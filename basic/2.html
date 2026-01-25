@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    
+    <script type="text/ruby">
+      def setup
+        createCanvas(600, 400) # 横600、縦400の画用紙を用意
+        background(255)        # 背景を白(255)にする
+        noLoop()               # 1回だけ描いて止める（目が疲れない設定）
+      end
+
+      def draw
+        # --- 1. 赤い丸を描く ---
+        # circle(横の位置, 縦の位置, 大きさ)
+        fill(255, 0, 0)        # 赤色で塗る
+        noStroke()             # 枠線はいらない
+        circle(100, 100, 80)
+
+        # --- 2. 青い四角を描く ---
+        # rect(左上の横の位置, 左上の縦の位置, 幅, 高さ)
+        fill(0, 0, 255)        # 青色で塗る
+        rect(200, 60, 120, 80)
+
+        # --- 3. 緑の三角形を描く ---
+        # triangle(点1のx,y, 点2のx,y, 点3のx,y)
+        fill(0, 180, 0)        # ちょっと濃い緑色
+        triangle(450, 50, 400, 150, 500, 150)
+
+        # --- 4. 好きな場所に文字を書く ---
+        # text("書きたい文字", 横の位置, 縦の位置)
+        fill(0)                # 黒色
+        textSize(24)           # 文字の大きさ
+        text("Hello Ruby!", 50, 300)
+
+        # --- 5. 太い線を引く ---
+        # line(始まりの横, 縦, 終わりの横, 縦)
+        stroke(100)            # 線の色はグレー
+        strokeWeight(8)        # 線の太さ
+        line(50, 350, 550, 350)
+      end
+
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <div style="padding: 15px; font-family: sans-serif;">
+      <h2>はじめての図形プログラミング</h2>
+      <p>プログラムの中の<b>数字</b>を書き換えて、図形を動かしたり、大きくしたりしてみよう！</p>
+    </div>
+    <main></main>
+  </body>
+</html>

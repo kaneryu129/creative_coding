@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    
+    <script type="text/ruby">
+      def setup
+        createCanvas(600, 600)
+        noStroke()
+      end
+
+      def draw
+        background(240) # 画面のリセット
+
+        # ==========================================
+        # 好きなパターンの「#」を消して実行してみてね！
+        # (一度に1つずつ「#」を消すのがコツだよ)
+        # ==========================================
+
+        # --- テンプレ1: マウスについてくる円 ---
+        # fill(255, 0, 0) # 赤色
+        # circle(mouseX, mouseY, 100)
+
+        # --- テンプレ2: 真ん中の四角 (サイズがマウスで変わる) ---
+        # rectMode(CENTER)
+        # fill(0, 150, 255) # 青色
+        # rect(300, 300, mouseX, mouseY)
+
+        # --- テンプレ3: 追いかけてくる線 ---
+        # stroke(0)       # 線の色を黒に
+        # strokeWeight(5) # 線の太さ
+        # line(0, 0, mouseX, mouseY)
+
+        # --- テンプレ4: 重なる2つの円（透明度） ---
+        # fill(255, 0, 0, 150) # 最後の数字が透明度(0-255)
+        # circle(250, 300, 200)
+        # fill(0, 0, 255, 150)
+        # circle(350, 300, 200)
+
+        # --- テンプレ5: マウスの位置で色が変わる (マジック・サークル) ---
+        # fill(mouseX / 2, 100, 200)
+        # circle(mouseX, mouseY, 150)
+
+      end
+
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <div style="padding: 20px; font-family: sans-serif;">
+      <h2>Ruby クリエイティブ・コーディング 練習帳</h2>
+      <p>コード内の <code>#</code> を消して、図形を表示させてみよう！</p>
+    </div>
+    <main></main>
+  </body>
+</html>

@@ -1,0 +1,52 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    
+    <script type="text/ruby">
+      def setup
+        createCanvas(600, 400) # 横600、縦400の画用紙を用意
+        background(255)        # 背景を白にする
+        noLoop()               # 動かさない設定（一回描くだけ）
+      end
+
+      def draw
+        # --- 1. 赤い丸 (circle) ---
+        # circle(横の位置, 縦の位置, 直径)
+        fill(255, 0, 0)
+        circle(100, 100, 80)
+
+        # --- 2. 青い四角 (rect) ---
+        # rect(左上の横, 左上の縦, 幅, 高さ)
+        fill(0, 0, 255)
+        rect(200, 60, 100, 80)
+
+        # --- 3. 緑の三角形 (triangle) ---
+        # triangle(点1のx,y, 点2のx,y, 点3のx,y)
+        fill(0, 255, 0)
+        triangle(450, 50, 400, 150, 500, 150)
+
+        # --- 4. 黄色い横長の楕円 (ellipse) ---
+        # ellipse(中心のx, 中心のy, 幅, 高さ)
+        fill(255, 255, 0)
+        ellipse(150, 300, 150, 50)
+
+        # --- 5. 太い黒い線 (line) ---
+        # line(始まりのx,y, 終わりのx,y)
+        stroke(0)        # 線の色を黒に
+        strokeWeight(10) # 線の太さを10に
+        line(350, 300, 550, 350)
+      end
+
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <div style="padding: 10px; font-family: sans-serif;">
+      <h3>図形のきほん：並べてみよう</h3>
+      <p>x（横）と y（縦）の数字を書き換えて、図形を動かしてみよう！</p>
+    </div>
+    <main></main>
+  </body>
+</html>
