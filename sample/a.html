@@ -1,0 +1,56 @@
+<html>
+    <head>
+      <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+      <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+      
+      <script type="text/ruby">
+        # --- 1. 最初の準備 (setup) ---
+        def setup
+          createCanvas(600, 600) # 600×600の大きさの画用紙を用意
+          noStroke()             # 丸の「ふち線」をナシにする
+        end
+        
+        # --- 2. ずっと繰り返す描画 (draw) ---
+        def draw
+          background(30)         # 画面を暗い色で塗りつぶしてリセット
+          step = 40              # 丸を並べる間隔（数字を小さくすると密集するよ）
+          
+          # 横(x)と縦(y)に、step(40)ずつ進みながら場所を決める
+          x_range = (step/2..width.to_i).step(step)
+          y_range = (step/2..height.to_i).step(step)
+          
+          # 二重の繰り返し：横の列ごとに、縦に丸を並べていく
+          x_range.each do |x|
+            y_range.each do |y|
+              
+              # 【計算：ロジックの肝】
+              # マウスがいる場所と、今から描く場所(x, y)の「距離」を測る
+              d = dist(x, y, mouseX, mouseY)
+              
+              # 【変換：魔法の翻訳機】
+              # 距離d（0〜400）を、丸の大きさ（50〜2）に変換！
+              # マウスが近い(0)と大きく(50)、遠い(400)と小さく(2)なる
+              circle_size = map(d, 0, 400, 50, 2)
+              
+              # 小さくなりすぎないように「最低でも2」にする
+              circle_size = 2 if circle_size < 2 
+              
+              # 【描画：画面に出す】
+              # 色を決める（xとyの場所によって、赤と緑の色合いが変わる）
+              fill(x / 2.5, y / 2.5, 200)
+              
+              # 丸を描く！ (場所x, 場所y, 横幅, 縦幅)
+              ellipse(x, y, circle_size, circle_size)
+            end
+          end
+        end
+  
+        # プログラムを動かし始めるスイッチ
+        P5::init()
+      </script>
+    </head>
+    <body>
+      <main></main>
+    </body>
+</html>

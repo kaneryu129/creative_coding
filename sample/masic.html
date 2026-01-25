@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    
+    <script type="text/ruby">
+      def setup
+        createCanvas(600, 600)
+        noStroke() # 線を消して色をきれいに見せる
+      end
+
+      def draw
+        background(30) # 画面をリセット（これを消すと絵が描ける！）
+
+        # 【ここが主役！】
+        # マウスの場所(mouseX)を、色の数字(0〜255)として使う
+        # 右に行くほど赤くなる
+        fill(mouseX / 2, 100, 200)
+
+        # マウスの位置に円を描く
+        # 大きさもマウスの高さ(mouseY)で変えてみる
+        ellipse(mouseX, mouseY, 100, 100)
+      end
+
+      P5::init()
+    </script>
+  </head>
+  <body><main></main></body>
+</html>
