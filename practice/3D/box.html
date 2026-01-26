@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+      def setup
+        createCanvas(100, 100, WEBGL)
+        # describeはp5.rbの定義によっては動かない場合があるので、一旦コメントアウトか削除
+      end
+
+      def draw
+        background(200)
+
+        # Rubyのコメントは「#」を使います（// はNG）
+        orbitControl()
+        
+        # ボックスを描画
+        box(50) # サイズを指定するとわかりやすいです
+      end
+
+      # 確実にp5.jsが準備できてから初期化
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>
