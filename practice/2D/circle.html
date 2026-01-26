@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+      def setup
+        createCanvas(400, 400)
+        background(200);
+      end
+
+      def draw
+
+      # 丸
+      circle(50, 50, 25);
+      circle(100, 50, 25);
+      circle(150, 50, 25);
+      circle(400, 50, 25);
+      
+      # 大きな丸
+      circle(200, 200, 200);
+ 
+      end
+
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <main>
+    </main>
+  </body>
+</html>
