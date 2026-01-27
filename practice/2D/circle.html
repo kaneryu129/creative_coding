@@ -4,22 +4,43 @@
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
     <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
     <script type="text/ruby">
+      # def setup
+      # createCanvas(400, 400)
+      # background(200);
+      # end
+
+      # def draw
+
+      # 丸
+      # circle(50, 50, 25);
+      # circle(100, 50, 25);
+      # circle(150, 50, 25);
+      # circle(400, 50, 25);
+      
+      # 大きな丸
+      # circle(200, 200, 200);
+ 
+      # end
+
       def setup
         createCanvas(400, 400)
-        background(200);
       end
 
       def draw
-
-      # 丸
-      circle(50, 50, 25);
-      circle(100, 50, 25);
-      circle(150, 50, 25);
-      circle(400, 50, 25);
-      
-      # 大きな丸
-      circle(200, 200, 200);
- 
+        background(100)
+        
+        # 縦と横に10個ずつ、合計100個の丸を並べる例
+        (0..9).each do |i|
+          (0..9).each do |j|
+            # 塗りつぶしの色をランダムに変えてみる
+            fill(rand(255), rand(255), rand(255))
+            
+            # x座標とy座標を計算して丸を描画
+            x = 40 + (i * 35)
+            y = 40 + (j * 35)
+            circle(x, y, 20)
+          end
+        end
       end
 
       P5::init()
