@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+        createCanvas(400, 400)
+        noStroke() # 枠線を消してスッキリさせる
+      end
+      
+      def draw
+        # 数字の定義（0 〜 255 のルール）
+        # 0に近づくほど黒く、255に近づくほど白い
+        background(240) # 薄いグレーの背景
+      
+        # おばけをマウスの位置に描く
+        draw_ghost(mouseX, mouseY, 100)
+
+        # 右に行くほど大きくなる
+        # draw_ghost(mouseX, mouseY, mouseX / 2)
+      end
+      
+      # おばけを描くためのオリジナルメソッド
+      def draw_ghost(x, y, size)
+        # 1. 体（白い円と四角を組み合わせる）
+        fill(255)
+        circle(x, y, size) # 頭の部分
+        rect(x - size/2, y, size, size/2) # 下半身の部分
+      
+        # 2. 足のフリフリ（繰り返し処理で丸を並べる）
+        (0..2).each do |i|
+          circle(x - size/3 + (i * size/3), y + size/2, size/3)
+        end
+      
+        # 3. 目（黒い小さな丸）
+        fill(50)
+        circle(x - size/5, y - size/10, size/10) # 左目
+        circle(x + size/5, y - size/10, size/10) # 右目
+      
+        # 4. ほっぺ（Rubyらしくピンク色に）
+        fill(255, 182, 193)
+        circle(x - size/3, y + size/10, size/10)
+        circle(x + size/3, y + size/10, size/10)
+      end
+      
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <main>
+    </main>
+  </body>
+</html>
