@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+      # 初期設定：プログラム開始時に1回だけ実行される
+      def setup
+        createCanvas(400, 400) # 400x400ピクセルのキャンバスを作成
+      end
+
+      # 描画ループ：1秒間に約60回、常に実行され続ける
+      def draw
+        # 1. 座標の準備
+        # 画面の中心(200, 200)を、新しい(0, 0)地点として設定する
+        translate(width / 2, height / 2)
+
+        # 2. 色のデザイン定義
+        back_color = "#f5f5f5" # 背景色（薄いグレー）
+        logo_color = "#A91401" # Rubyのロゴ色（深い赤）
+
+        background(back_color)  # 画面全体の塗りつぶし
+        fill(logo_color)        # これから描く図形の中の色
+        stroke(back_color)      # 図形の枠線の色（背景と同じ色にして境界を馴染ませる）
+
+        # 3. Rubyロゴの外枠（宝石の形）を描く
+        # 頂点を順番に指定して、最後に閉じることで1つの多角形を作る
+        beginShape()
+        vertex(-45, -45) # 左上の角
+        vertex(45, -45)  # 右上の角
+        vertex(70, -10)  # 右側の張り出し
+        vertex(0, 65)    # 一番下の尖った部分
+        vertex(-70, -10) # 左側の張り出し
+        endShape(CLOSE)  # 最初の点と繋いで形を完成させる
+
+        # 4. 宝石のカット面（内側の線）を描く
+        # line(開始X, 開始Y, 終了X, 終了Y)
+        # ロゴの立体感を出すための補助線
+        line(-45, -45, -22, -10) # 左上の斜め線
+        line(-22, -10, 0, -45)   # M字の左側
+        line(0, -45, 22, -10)    # M字の右側
+        line(22, -10, 45, -45)   # 右上の斜め線
+        
+        line(-70, -10, 70, -10)  # 真ん中を横切る水平線
+        
+        # 下の尖った部分に向かう2本の線
+        line(-22, -10, 0, 65)    # 左から下へ
+        line(22, -10, 0, 65)     # 右から下へ
+      end
+
+      # p5.rbを起動させるためのおまじない
+      P5::init()
+    </script>
+  </head>
+  <body>
+    <main>
+    </main>
+  </body>
+</html>
