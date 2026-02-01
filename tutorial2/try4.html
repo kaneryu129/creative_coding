@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+          createCanvas(400, 400) # 横長のキャンバス
+          # background(240)       # 背景は薄いグレー
+        end
+      
+
+        def draw
+            background(30)
+            noFill()
+            stroke(255) # 白い枠線だけにする
+
+            15.times do |i|
+                # i が大きくなるほど、円が大きくなっていく
+                # 0, 20, 40, 60... とサイズが変化する
+                size = i * 20
+                circle(200, 200, size)
+            end
+        end
+      
+        P5::init()
+      </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>

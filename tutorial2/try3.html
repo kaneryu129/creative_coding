@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+          createCanvas(400, 400) # 横長のキャンバス
+          # background(240)       # 背景は薄いグレー
+        end
+      
+
+        def draw
+            background(30) # 背景を暗くして模様を際立たせる
+            noStroke()
+
+            # 縦と横の二重ループでタイル状に並べる
+            5.times do |x_count|
+                5.times do |y_count|
+                
+                # case構文で、場所（列）ごとに色を分ける
+                case x_count
+                when 0, 4
+                    fill(255, 100, 100) # 両端は赤系
+                when 2
+                    fill(255, 255, 100) # 真ん中は黄色
+                else
+                    fill(100, 100, 255) # それ以外は青系
+                end
+
+                # 座標を計算して描画
+                # rectにするとドット
+                circle(80 + x_count * 60, 80 + y_count * 60, 40)
+                end
+            end
+        end
+      
+        P5::init()
+      </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>
