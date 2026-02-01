@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+          createCanvas(400, 200) # 横長のキャンバス
+          background(240)       # 背景は薄いグレー
+        end
+      
+
+        def draw
+            background(240)
+            
+            10.times do |i|
+                # まずは基本の色を「白」にセットしておく
+                fill(255)
+
+                # if構文：3番目(i=2)の丸だけ「赤」にする
+                if i == 2
+                fill(255, 0, 0)
+                end # ここで if は終わり！
+
+                # unless構文：5番目(i=4)「じゃない」時に「白」にする
+                # ※ただし今回は「5番目なら緑」という処理を追加
+                unless i == 4
+                # 5番目じゃない時の処理（何もしない、または色指定）
+                else
+                fill(0, 255, 0) # 5番目なら「緑」
+                end # ここで unless は終わり！
+
+                circle(40 + i * 35, 100, 30)
+            end # ここで times は終わり！
+        end
+      
+        P5::init()
+      </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>
