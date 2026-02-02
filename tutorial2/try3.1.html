@@ -1,0 +1,63 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+          createCanvas(400, 400) # 横長のキャンバス
+          # background(240)       # 背景は薄いグレー
+        end
+      
+
+        def draw
+            background(20) # 深みのある黒
+            noStroke()
+
+            # 1. stepを使って、より細かく、たくさん並べる
+            0.step(400, 50) do |x|
+                0.step(400, 50) do |y|
+                
+                # 計算で「中心からの距離」の目安を作る（i + j のようなイメージ）
+                grid_sum = (x / 50) + (y / 50)
+
+                # 2. case構文：グリッドの合計値で「層」のような色分けをする
+                case grid_sum % 3
+                when 0
+                    fill(255, 80, 80)  # サーモンピンク
+                when 1
+                    fill(80, 255, 180) # ミントグリーン
+                else
+                    fill(80, 180, 255) # スカイブルー
+                end
+
+                # 3. if構文：場所によって描く「形」を使い分ける
+                # 画面の上半分は「四角」、下半分は「丸」にする
+                if y < 200
+                    rectMode(CENTER)
+                    rect(x, y, 40, 40, 5) # 最後の5は角丸の指定
+                else
+                    circle(x, y, 40)
+                end
+
+                # 4. 重ね描き：中心に小さな白い点（または穴）をあける
+                fill(255, 255, 255, 150) # 半透明の白
+                circle(x, y, 10)
+                
+                # 5. unless構文：特定の場所以外に、さらに装飾を足す
+                # 端っこ（x=0や400）じゃない時だけ、細い横線を引く
+                unless x == 0 || x == 400
+                    fill(255, 50)
+                    rect(x, y, 50, 2)
+                end
+                end
+            end
+        end
+      
+        P5::init()
+      </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>

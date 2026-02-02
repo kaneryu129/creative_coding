@@ -1,0 +1,56 @@
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/ruby-3_2-wasm-wasi@next/dist/browser.script.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
+    <script type="text/ruby" src="https://raw.githubusercontent.com/ksbmyk/sketch/main/public/p5.rb"></script>
+    <script type="text/ruby">
+        def setup
+          createCanvas(400, 200) # 横長のキャンバス
+          background(240)       # 背景は薄いグレー
+        end
+      
+
+        def draw
+            background(30) # 背景は暗いグレー
+            noStroke()
+
+            # 1. 二重ループで 6x6 のタイルを作る
+            6.times do |x_i|
+                6.times do |y_i|
+                
+                # 座標を計算（間隔は 60）
+                x = 50 + x_i * 60
+                y = 50 + y_i * 60
+
+                # 2. case構文：横の位置（x_i）で色を分ける
+                case x_i
+                when 0, 5
+                    fill(100, 100, 255) # 両端は「青」
+                when 1, 4
+                    fill(150, 100, 255) # その内側は「紫」
+                else
+                    fill(250, 100, 250) # 真ん中は「ピンク」
+                end
+
+                # 3. ifとunlessの組み合わせ：模様にアクセントをつける
+                # 「もし縦が2番目」なら四角に、
+                # 「それ以外（unless）」なら丸にする
+                if y_i == 2
+                    rectMode(CENTER)
+                    rect(x, y, 45, 45)
+                else
+                    # 4. さらに、特定の場所だけ色を「白」で上書き
+                    fill(255) if x_i == y_i # 斜めのラインだけ白くする
+                    
+                    circle(x, y, 40)
+                end
+                end
+            end
+        end
+      
+        P5::init()
+      </script>
+  </head>
+  <body>
+    <main></main>
+  </body>
+</html>
